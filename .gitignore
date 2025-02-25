@@ -1,0 +1,56 @@
+# Зависимости
+node_modules/
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log*
+lerna-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Билд-файлы
+dist/
+build/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Кеши
+.cache/
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*.swn
+
+# Логи
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Тесты
+/coverage/
+*.lcov
+
+# Next.js (если используешь)
+.next/
+out/
+
+# Storybook
+.storybook/
+storybook-static/
+
+# Docker
+docker-compose.override.yml
+
+# TypeScript
+*.tsbuildinfo
+
+# Плейграунды и временные файлы
+**/playground/
+**/tmp/
