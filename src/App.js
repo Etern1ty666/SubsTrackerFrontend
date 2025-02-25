@@ -20,13 +20,15 @@ function App() {
                 console.log('Telegram data valid', response);
                 if(response.data === true){
                     setIsTelgramUser(true);
-                    getSubscriptions()
+                    setLoading(false)
+                    getSubscriptions();
                 }else{
                     setIsTelgramUser(false);
+                    setLoading(false)
                 }
             })
-            .catch(error => {console.error('Error when checking telegram data', error); setIsTelgramUser(false)});
-        setLoading(false)
+            .catch(error => {console.error('Error when checking telegram data', error); setIsTelgramUser(false); setLoading(false)
+            });
 
     }, []);
     return (
