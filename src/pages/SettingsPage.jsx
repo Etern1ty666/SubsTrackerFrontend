@@ -41,7 +41,6 @@ function SettingsPage() {
             alert('error', 'Не удалось удалить подписки, попробуйте еще раз')
         }
         setDeleteLoading(false)
-
     }
 
     return (

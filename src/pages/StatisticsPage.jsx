@@ -1,12 +1,14 @@
-import SubscriptionCard from "../components/SubscriptionCard";
+import { SmileOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react-lite';
+import { Result, Button } from "antd";
 
 
 function StatisticsPage() {
     return (
-        <div>
-            <>statistics</>
-        </div>
+        <Result
+            icon={<SmileOutlined />}
+            title="Эта вкладка скоро появится"
+        />
     );
 }
 

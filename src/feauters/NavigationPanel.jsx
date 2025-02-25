@@ -47,11 +47,11 @@ const NavigationPanel = () => {
           icon: <CalendarOutlined style={iconStyle}/>,
           label: <Paragraph>Календарь</Paragraph>
         },
-        /*{
+        {
           value: '/statistics',
           icon: <PieChartOutlined style={iconStyle}/>,
           label: <Paragraph>Статистика</Paragraph>
-        },*/
+        },
         {
           value: '/settings',
           icon: <SettingOutlined style={iconStyle}/>,
