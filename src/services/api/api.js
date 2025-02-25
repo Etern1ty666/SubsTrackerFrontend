@@ -18,9 +18,9 @@ const headers = {
     'Tg-User-Info': JSON.stringify(tg.initDataUnsafe.user),
     'Content-Type': 'application/json'
 };
-export async function fetchSubscriptions (userId){
+export async function fetchSubscriptions (){
     try {
-        const response = await axios.get(`http://localhost:8000/api/getSubscriptions/?user_id=${tg.initDataUnsafe.user.id}`, {headers: headers});
+        const response = await axios.get(process.env.REACT_APP_API_URL + `api/getSubscriptions/?user_id=${tg.initDataUnsafe.user.id}`, {headers: headers});
         return response.data;
     } catch (error) {
         console.error('Error getting subscriptions', error);
@@ -30,7 +30,7 @@ export async function fetchSubscriptions (userId){
 
 export async function updateSubscription (subscription){
     try {
-        const response = await axios.post(`http://localhost:8000/api/updateSubscription/`, {
+        const response = await axios.post(process.env.REACT_APP_API_URL + `api/updateSubscription/`, {
             id: subscription.id,
             name: subscription.name,
             icon: subscription.icon,
@@ -52,7 +52,7 @@ export async function updateSubscription (subscription){
 
 export async function deleteSubscription (subscriptionId){
     try {
-        const response = await axios.post(`http://localhost:8000/api/deleteSubscription/`, {subscription_id: subscriptionId}, { headers });
+        const response = await axios.post(process.env.REACT_APP_API_URL + `api/deleteSubscription/`, {subscription_id: subscriptionId}, { headers });
         return response.data;
     } catch (error) {
         console.error('Error deleting subscriptions', error);
@@ -62,7 +62,7 @@ export async function deleteSubscription (subscriptionId){
 
 export async function createSubscription (subscription){
     try {
-        const response = await axios.post('http://localhost:8000/api/createSubscription/', {
+        const response = await axios.post(process.env.REACT_APP_API_URL + 'api/createSubscription/', {
             user_id: tg.initDataUnsafe.user.id,
             name: subscription.name,
             icon: subscription.icon,
@@ -84,7 +84,7 @@ export async function createSubscription (subscription){
 
 export async function addTestSubscriptions (){
     try {
-        const response = await axios.post('http://localhost:8000/api/addTestSubscriptions/', {}, { headers });
+        const response = await axios.post(process.env.REACT_APP_API_URL + 'api/addTestSubscriptions/', {}, { headers });
         return response.data;
     } catch (error) {
         console.error('Error adding test subscriptions', error);
@@ -94,7 +94,7 @@ export async function addTestSubscriptions (){
 
 export async function deleteAllSubscriptions (){
     try {
-        const response = await axios.post('http://localhost:8000/api/deleteAllSubscriptions/', {}, { headers });
+        const response = await axios.post(process.env.REACT_APP_API_URL + 'api/deleteAllSubscriptions/', {}, { headers });
         return response.data;
     } catch (error) {
         console.error('Error deletind all subscriptions', error);
