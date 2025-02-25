@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Card, Divider, Modal, Space, Statistic } from 'antd';
+import { Avatar, Button, Card, Divider, message, Modal, Space, Statistic } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import Paragraph from 'antd/es/typography/Paragraph';
 import InsideContent from '../components/InsideContent';
@@ -70,14 +70,23 @@ const SubscriptionDetails = ({open, onClose, onEdit, ...props}) => {
             
         )
     }
-    
+    const [messageApi, contextHolder] = message.useMessage();
 
+    const alert = (type, text) => {
+        messageApi.open({
+            type: type,
+            content: text,
+        });
+      };
     const tg = window.Telegram.WebApp;
     console.log(tg.initDataUnsafe)
     async function delSubscription (subscription) {
         const result = await deleteSubscription(subscription.id)
         if (result != 'Delete error'){
             subscriptionsStore.delete(result)
+            alert('success', 'Подписка удалена')
+        }else{
+            alert('error', 'Не удалось удалить подписку, попробуйте позже')
         }
     };
 
@@ -94,6 +103,7 @@ const SubscriptionDetails = ({open, onClose, onEdit, ...props}) => {
                 </Button>
             ]}
         >
+            {contextHolder}
              <SettingsSubscription
                 type='edit'
                 open={settingsOpened}

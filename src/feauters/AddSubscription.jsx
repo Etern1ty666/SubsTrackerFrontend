@@ -18,7 +18,7 @@ const AddSubscription = () => {
 
     return (
         <>
-            <AddSubscriptionButton onChange={() => setOpened(true)} />
+            <AddSubscriptionButton className="add-subscription-button" onChange={() => setOpened(true)} />
             <SettingsSubscriptions
                 type='add'
                 open={opened}

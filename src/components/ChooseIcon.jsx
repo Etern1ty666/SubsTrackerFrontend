@@ -10,7 +10,7 @@ const ChooseIcon = ({color, icon, onColorChange, onIconChange}) => {
     return (
         <Space>
             <Avatar style={{backgroundColor: color}} icon={Icons[icon]} onClick={() => setOpened(true)} shape="square" size="large"/>
-            <Button onClick={() => setOpened(true)} type="primary" icon={<EditOutlined />} />
+            <Button onClick={() => setOpened(true)} icon={<EditOutlined />} />
             <Modal
                 title='Оформление'
                 centered

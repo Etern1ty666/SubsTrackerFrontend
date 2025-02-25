@@ -6,6 +6,7 @@ import { observer } from 'mobx-react-lite';
 const AddSubscriptionButton = ({onChange}) => {
   return (
       <Button
+        className="add-subscription-button"
         style={{
             zIndex: 999,
             position: "fixed",

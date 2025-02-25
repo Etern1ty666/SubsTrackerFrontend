@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Space } from 'antd';
+import { Button, message, Result, Space } from 'antd';
 import PageHeader from '../components/PageHeader';
 import SubscriptionCard from '../components/SubscriptionCard';
 import AddSubscriptionButton from '../components/AddSubscriptionButton';
@@ -11,11 +11,13 @@ import { getNextPaymentDate } from '../utils/DateFunctions';
 import { parseSubPlan } from '../utils/Formatting';
 import SubscriptionDetails from '../feauters/SubscriptionDetails';
 import { observer } from 'mobx-react-lite';
-import { LoadingOutlined } from '@ant-design/icons';
+import { LoadingOutlined, SmileOutlined } from '@ant-design/icons';
 import InsideContent from '../components/InsideContent';
 import Loading from '../components/Loading';
 import CategorySubscriptions from '../components/CategorySubscriptions';
 import AddSubscription from '../feauters/AddSubscription';
+import Paragraph from 'antd/es/typography/Paragraph';
+import { addTestSubscriptions } from '../services/api/api';
 
 const { Title } = Typography;
 
@@ -40,7 +42,44 @@ const SubscriptionPage = () => {
         setSelectedSubscription(subscription)
         setDetailsOpened(true)
     }
+
+    const [messageApi, contextHolder] = message.useMessage();
+
+    const alert = (type, text) => {
+        messageApi.open({
+            type: type,
+            content: text,
+        });
+      };
+
+    const [addLoading, setAddLoading] = useState(false)
+
+    async function addTest () {
+        setAddLoading(true)
+        const response = await addTestSubscriptions();
+        if (response != 'Error'){
+            response.map(subscription => {subscriptionsStore.add(subscription)})
+            alert('success', 'Подписки добавлены')
+        }else{
+            alert('error', 'Не удалось добавить подписки, попробуйте еще раз')
+        }
+        setAddLoading(false)
+    }
+
+
     const renderSubscriptions = (categorized) => {
+        console.log(categorized)
+        if(categorized.soon.length === 0 && categorized.halfYear.length === 0 && categorized.year.length === 0 && categorized.later.length === 0){
+            return <Result
+                icon={<SmileOutlined />}
+                title="Подписки еще не добавлены. Начнем сейчас?"
+                extra={<Space direction='vertical'>
+                    <Button onClick={() => document.querySelector('.add-subscription-button').click()} type="primary">Добавить подписку</Button>
+                    <Typography level={5}>или</Typography>
+                    <Button onClick={addTest} loading={addLoading}>Добавить тестовые подписки</Button>
+                </Space>}
+            />
+        }
         return Object.entries(categorized).map(([key, subscriptions]) => {
             if(subscriptions.length !== 0){
                 let title = ''
@@ -71,6 +110,7 @@ const SubscriptionPage = () => {
 
     return (
         <>
+            {contextHolder}
             <PageHeader PageName={'Подписки'}/>
             <Space
                 direction="vertical"

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Calendar, InputNumber, Modal, Select, Tooltip, Card, Space, Input, Button, Divider } from 'antd';
+import { Calendar, InputNumber, Modal, Select, Tooltip, Card, Space, Input, Button, Divider, message } from 'antd';
 import { QuestionCircleFilled } from '@ant-design/icons';
 import ChooseIcon from '../components/ChooseIcon';
 import { categories, notificationsList, PeriodTypes } from '../assets/ListOptions';
@@ -15,6 +15,7 @@ import subscriptionsStore from '../store/subscriptionsStore';
 const { TextArea } = Input;
 
 const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props}) => {
+    const [messageApi, contextHolder] = message.useMessage();
     const [newIcon, setIcon] = useState('')
     const [newColor, setColor] = useState('')
     const [newName, setName] = useState('')
@@ -25,6 +26,14 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
     const [newNotifications, setNotifications] = useState('')
     const [newCategory, setCategory] = useState('')
     const [nameValid, setNameValid] = useState(true)
+
+    const alert = (type, text) => {
+        messageApi.open({
+            type: type,
+            content: text,
+        });
+      };
+
 
     useEffect(() => {
         if (type == 'add') {
@@ -80,22 +89,31 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
                 console.log('add')
                 const response = await createSubscription(tg.initDataUnsafe.user_id, newSubscription)
                 if (response != 'Create error'){
+                    alert('success', 'Подписка добавлена')
                     onClose(false);
                     onFinish(response);
+                }else{
+                    alert('error', 'Не удалось добавить подписку, попробуйте позже')
                 }
 
             }else if(type === 'edit'){
                 const response = await updateSubscription(newSubscription)
                 if(response != 'Update error'){
+                    alert('success', 'Подписка изменена')
                     onClose(false);
                     onFinish(newSubscription)
                 }else{
-                    console.log('Cant edit on server')
+                    alert('error', 'Не удалось изменить подписку')
                 }
             }
         }
         else{
-            console.log('Form not valid')
+            const element = document.querySelector('.name-field');
+            console.log(element)
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            alert('error', 'Укажите название подписки')
         }
     }
 
@@ -126,6 +144,7 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
                 </Button>
             ]}
         >
+            {contextHolder}
             <InsideContent>
                 <Card title="Информация">
                     <div style={{textAlign: 'center'}}>
@@ -138,6 +157,7 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
                         <br/>
                         <br/>
                         <TextArea
+                            className='name-field'
                             status={nameValid?'':'error'}
                             value={newName}
                             onChange={(e) => {setNameValid(true); setName(e.target.value)}}
