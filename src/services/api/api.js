@@ -66,3 +66,23 @@ export async function createSubscription (userId, subscription){
         return 'Create error';
     }
 }
+
+export async function addTestSubscriptions (){
+    try {
+        const response = await axios.post('http://localhost:8000/api/addTestSubscriptions/');
+        return response.data;
+    } catch (error) {
+        console.error('Error adding test subscriptions', error);
+        return 'Error';
+    }
+}
+
+export async function deleteAllSubscriptions (){
+    try {
+        const response = await axios.post('http://localhost:8000/api/deleteAllSubscriptions/');
+        return response.data;
+    } catch (error) {
+        console.error('Error deletind all subscriptions', error);
+        return 'Error';
+    }
+}
