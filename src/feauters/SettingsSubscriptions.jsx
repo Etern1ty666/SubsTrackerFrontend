@@ -54,7 +54,7 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
             setPeriod(props.period);
             setPeriodType(props.periodType);
             setPaymentDate(dayjs(props.paymentDate));
-            setNotifications(props.notifications);
+            setNotifications(Number(props.notifications));
             setCategory(props.category);
         }
       }, [open]);
@@ -71,8 +71,7 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
     async function saveSubscription () {
         
         if(nameIsCorrect(newName)){
-            const tg = window.Telegram.WebApp;
-
+            
             var newSubscription = {
                 id: props.id,
                 icon: newIcon, 
@@ -87,7 +86,7 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
             }
             if (type === 'add'){
                 console.log('add')
-                const response = await createSubscription(tg.initDataUnsafe.user_id, newSubscription)
+                const response = await createSubscription(newSubscription)
                 if (response != 'Create error'){
                     alert('success', 'Подписка добавлена')
                     onClose(false);
@@ -231,7 +230,7 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
                     <Select
                         style={{width: '100%'}}
                         value={newNotifications}
-                        onChange={(value) => setNotifications(value)}
+                        onChange={(value) => {setNotifications(value); console.log(value)}}
                         options={renderNotifications(notificationsList, newPeriod, newPeriodType)}
                     />
                 </Card>

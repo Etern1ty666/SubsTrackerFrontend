@@ -46,6 +46,7 @@ export const notificationsList = [
   {
       value: 0,
       label: 'Не напоминать',
+      disabled: false,
   },
 ]
 

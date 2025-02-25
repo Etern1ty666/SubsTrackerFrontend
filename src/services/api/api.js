@@ -4,10 +4,23 @@ function sleep(time) {
     return new Promise((resolve) => setTimeout(resolve, time));
   }
 
+const tg = window.Telegram.WebApp;
+console.log(tg.initDataUnsafe)
 
+const headers1 = {
+    'Content-Type': 'application/json',
+    'Tg-Init-Data': tg.initData,
+    'Tg-User-Info': tg.initDataUnsafe.user,
+}
+
+const headers = {
+    'Tg-Init-Data': tg.initData,
+    'Tg-User-Info': JSON.stringify(tg.initDataUnsafe.user),
+    'Content-Type': 'application/json'
+};
 export async function fetchSubscriptions (userId){
     try {
-        const response = await axios.get(`http://localhost:8000/api/getSubscriptions/?user_id=${6}`);
+        const response = await axios.get(`http://localhost:8000/api/getSubscriptions/?user_id=${tg.initDataUnsafe.user.id}`, {headers: headers});
         return response.data;
     } catch (error) {
         console.error('Error getting subscriptions', error);
@@ -28,7 +41,8 @@ export async function updateSubscription (subscription){
             paymentDate: subscription.paymentDate.format("YYYY-MM-DD"),
             notifications: subscription.notifications,
             category: subscription.category
-        });
+        },
+        { headers });
         return response.data;
     } catch (error) {
         console.error('Error update subscription', error);
@@ -38,7 +52,7 @@ export async function updateSubscription (subscription){
 
 export async function deleteSubscription (subscriptionId){
     try {
-        const response = await axios.post(`http://localhost:8000/api/deleteSubscription/`, {subscription_id: subscriptionId});
+        const response = await axios.post(`http://localhost:8000/api/deleteSubscription/`, {subscription_id: subscriptionId}, { headers });
         return response.data;
     } catch (error) {
         console.error('Error deleting subscriptions', error);
@@ -46,10 +60,10 @@ export async function deleteSubscription (subscriptionId){
     }
 }
 
-export async function createSubscription (userId, subscription){
+export async function createSubscription (subscription){
     try {
         const response = await axios.post('http://localhost:8000/api/createSubscription/', {
-            user_id: userId,
+            user_id: tg.initDataUnsafe.user.id,
             name: subscription.name,
             icon: subscription.icon,
             color: subscription.color,
@@ -59,7 +73,8 @@ export async function createSubscription (userId, subscription){
             paymentDate: subscription.paymentDate.format("YYYY-MM-DD"),
             notifications: subscription.notifications,
             category: subscription.category
-        });
+        },
+        { headers });
         return response.data;
     } catch (error) {
         console.error('Error creating subscriptions', error);
@@ -69,7 +84,7 @@ export async function createSubscription (userId, subscription){
 
 export async function addTestSubscriptions (){
     try {
-        const response = await axios.post('http://localhost:8000/api/addTestSubscriptions/');
+        const response = await axios.post('http://localhost:8000/api/addTestSubscriptions/', {}, { headers });
         return response.data;
     } catch (error) {
         console.error('Error adding test subscriptions', error);
@@ -79,7 +94,7 @@ export async function addTestSubscriptions (){
 
 export async function deleteAllSubscriptions (){
     try {
-        const response = await axios.post('http://localhost:8000/api/deleteAllSubscriptions/');
+        const response = await axios.post('http://localhost:8000/api/deleteAllSubscriptions/', {}, { headers });
         return response.data;
     } catch (error) {
         console.error('Error deletind all subscriptions', error);

@@ -45,7 +45,7 @@ const SubscriptionPage = () => {
 
     const [messageApi, contextHolder] = message.useMessage();
 
-    const alert = (type, text) => {
+    const alertMessage = (type, text) => {
         messageApi.open({
             type: type,
             content: text,
@@ -59,9 +59,9 @@ const SubscriptionPage = () => {
         const response = await addTestSubscriptions();
         if (response != 'Error'){
             response.map(subscription => {subscriptionsStore.add(subscription)})
-            alert('success', 'Подписки добавлены')
+            alertMessage('success', 'Подписки добавлены')
         }else{
-            alert('error', 'Не удалось добавить подписки, попробуйте еще раз')
+            alertMessage('error', 'Не удалось добавить подписки, попробуйте еще раз')
         }
         setAddLoading(false)
     }
