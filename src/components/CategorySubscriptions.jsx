@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import Title from 'antd/es/typography/Title';
 import SubscriptionCard from './SubscriptionCard';
 import { getNextPaymentDate } from '../utils/DateFunctions';
-import { parseSubPlan } from '../utils/Formatting';
+import { getClearCost, parseSubPlan } from '../utils/Formatting';
 import InsideContent from './InsideContent';
 
 const CategorySubscriptions = ({category, onClick, subscriptions}) => {
@@ -15,7 +15,7 @@ const CategorySubscriptions = ({category, onClick, subscriptions}) => {
                 <SubscriptionCard
                 hoverable={true}
                 onClick={() => onClick(sub)}
-                description={parseSubPlan(sub.period, sub.periodType)}
+                description={getClearCost(sub.cost) + ' ' + parseSubPlan(sub.period, sub.periodType, false)}
                 title={getNextPaymentDate(sub.paymentDate, sub.period, sub.periodType).nextPaymentInStr}
                 {...sub}
                 />)

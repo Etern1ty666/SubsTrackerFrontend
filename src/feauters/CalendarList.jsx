@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal, Space } from 'antd';
 import SubscriptionCard from '../components/SubscriptionCard';
 import { observer } from 'mobx-react-lite';
-import { getClearCost } from '../utils/Formatting';
+import { getClearCost, parseSubPlan } from '../utils/Formatting';
 import InsideContent from '../components/InsideContent';
 
 const CalendarList = ({text, data, date}) => {
@@ -26,12 +26,11 @@ const CalendarList = ({text, data, date}) => {
                 <InsideContent>
                     {
                         data.map(subscription => {
-                            console.log(subscription)
                             return (
                                 <SubscriptionCard
                                     onClick={test}
-                                    title={subscription.name}
-                                    description={getClearCost(subscription.cost)}
+                                    title={getClearCost(subscription.cost)}
+                                    description={parseSubPlan(subscription.period, subscription.periodType)}
                                     {...subscription}
                                 />
                             )

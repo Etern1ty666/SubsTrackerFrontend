@@ -20,7 +20,7 @@ const headers = {
 };
 export async function fetchSubscriptions (){
     try {
-        const response = await axios.get(process.env.REACT_APP_API_URL + `api/getSubscriptions/?user_id=${tg.initDataUnsafe.user.id}`, {headers: headers});
+        const response = await axios.get(process.env.REACT_APP_API_URL + `api/getSubscriptions/`, {headers: headers});
         return response.data;
     } catch (error) {
         console.error('Error getting subscriptions', error);
