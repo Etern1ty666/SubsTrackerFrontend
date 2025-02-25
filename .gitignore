@@ -54,3 +54,6 @@ docker-compose.override.yml
 # Плейграунды и временные файлы
 **/playground/
 **/tmp/
+
+.env.development
+.env.production
