@@ -4,7 +4,6 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import Paragraph from 'antd/es/typography/Paragraph';
 import InsideContent from '../components/InsideContent';
 import SettingsSubscription from './SettingsSubscriptions';
-import dayjs from "dayjs";
 import { categories } from '../assets/ListOptions';
 import { getNextPaymentDate } from '../utils/DateFunctions';
 import { getClearCost, getPluralForm, parseSubPlan } from '../utils/Formatting';
@@ -58,9 +57,9 @@ const SubscriptionDetails = ({open, onClose, onEdit, ...props}) => {
         })
         var notificationStr;
         if(notification == 0){
-            notificationStr = 'Без уведомлений.'
+            notificationStr = 'Без уведомлений'
         }else{
-            notificationStr = 'Уведомления за ' + notification + ' ' + getPluralForm(notification, 'день', 'дня', 'дней') + ' до платежа.'
+            notificationStr = 'Уведомления за ' + notification + ' ' + getPluralForm(notification, 'день', 'дня', 'дней') + ' до платежа'
         }
         return(
             <>

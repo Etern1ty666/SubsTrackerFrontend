@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BarsOutlined, CalendarOutlined, PieChartOutlined, SettingOutlined } from '@ant-design/icons';
-import { Segmented, Typography } from 'antd';
+import { Segmented } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Paragraph from 'antd/es/typography/Paragraph';
 import { observer } from 'mobx-react-lite';
-
-const tg = window.Telegram.WebApp;
 
 const iconStyle = { fontSize: '26px', marginTop: 15}
 

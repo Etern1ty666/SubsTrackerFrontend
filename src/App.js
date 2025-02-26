@@ -16,6 +16,7 @@ function App() {
     const [loading, setLoading] = useState(true)
     const [errorInfo, setErrorInfo] = useState('')
     useEffect(() => {
+
         const tg = window.Telegram.WebApp;
         setLoading(true)
         axios.get( process.env.REACT_APP_API_URL + 'api/checkTelegramData/', { params: { init_data: tg.initData, user_info: tg.initDataUnsafe.user}})
@@ -41,7 +42,7 @@ function App() {
         :
         <>
             {
-                !isTelegramUser
+                isTelegramUser
                 ?
                 <AppRouter/>
                 :

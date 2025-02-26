@@ -16,7 +16,6 @@ export function categorizeSubscriptions(subscriptions){
     return sortedSubscriptions.reduce(
         (acc, subscription) => {
             const paymentDate = getNextPaymentDate(subscription.paymentDate, subscription.period, subscription.periodType);
-            console.log(subscription.name, 'дней до следующего платежа', paymentDate.daysUntil)
             if (paymentDate.daysUntil < 31){
                 acc.soon.push(subscription);
             }else if(paymentDate.monthsUntil < 3){

@@ -1,5 +1,4 @@
-import { action, makeAutoObservable, runInAction } from "mobx";
-import { getNextPaymentDate } from "../utils/DateFunctions";
+import { makeAutoObservable, runInAction } from "mobx";
 import { categorizeSubscriptions } from "../utils/utils";
 import { fetchSubscriptions } from "../services/api/api";
 
@@ -32,7 +31,6 @@ class SubscriptionsStore {
                 this.isLoading = true;
             });            
             const result = await fetchSubscriptions()
-            console.log(result)
             runInAction(() => {
                 this.data = result;
                 this.isLoading = false;

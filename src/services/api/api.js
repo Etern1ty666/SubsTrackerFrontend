@@ -1,41 +1,21 @@
 import axios from "axios";
 
-function sleep(time) {
-    return new Promise((resolve) => setTimeout(resolve, time));
-  }
 
 const tg = window.Telegram.WebApp;
-console.log(tg.initDataUnsafe)
-
-const headers1 = {
-    'Content-Type': 'application/json',
-    'Tg-Init-Data': tg.initData,
-    'Tg-User-Info': tg.initDataUnsafe.user,
-}
 
 const headers = {
     'Tg-Init-Data': tg.initData,
     'Tg-User-Info': JSON.stringify(tg.initDataUnsafe.user),
     'Content-Type': 'application/json'
 };
+
 export async function fetchSubscriptions (){
     try {
         const response = await axios.get(process.env.REACT_APP_API_URL + `api/getSubscriptions/`, {headers: headers});
         return response.data;
     } catch (error) {
         console.error('Error getting subscriptions', error);
-        return [{
-            "id": 1,
-            "name": "Мобильный тариф",
-            "icon": "19",
-            "color": "#2690ce",
-            "cost": "399.99",
-            "period": "30",
-            "periodType": "day",
-            "paymentDate": "2025-02-25",
-            "notifications": "1",
-            "category": "internet"
-        }];
+        return [];
     }
 }
 

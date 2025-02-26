@@ -1,6 +1,6 @@
 import { SmileOutlined } from '@ant-design/icons';
 import { observer } from 'mobx-react-lite';
-import { Result, Button } from "antd";
+import { Result } from "antd";
 
 
 function StatisticsPage() {

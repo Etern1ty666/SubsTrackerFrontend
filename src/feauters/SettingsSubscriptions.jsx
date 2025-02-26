@@ -10,7 +10,6 @@ import InsideContent from '../components/InsideContent';
 import { executePayments } from '../utils/DateFunctions';
 import { observer } from 'mobx-react-lite';
 import { createSubscription, updateSubscription } from '../services/api/api';
-import subscriptionsStore from '../store/subscriptionsStore';
 
 const { TextArea } = Input;
 
@@ -85,7 +84,6 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
                 category: newCategory
             }
             if (type === 'add'){
-                console.log('add')
                 const response = await createSubscription(newSubscription)
                 if (response != 'Create error'){
                     alert('success', 'Подписка добавлена')
@@ -108,7 +106,6 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
         }
         else{
             const element = document.querySelector('.name-field');
-            console.log(element)
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
@@ -230,7 +227,7 @@ const SettingsSubscription = ({ type='edit', open, onClose, onFinish, ...props})
                     <Select
                         style={{width: '100%'}}
                         value={newNotifications}
-                        onChange={(value) => {setNotifications(value); console.log(value)}}
+                        onChange={(value) => {setNotifications(value);}}
                         options={renderNotifications(notificationsList, newPeriod, newPeriodType)}
                     />
                 </Card>

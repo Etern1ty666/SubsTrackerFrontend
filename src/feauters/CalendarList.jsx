@@ -7,9 +7,7 @@ import InsideContent from '../components/InsideContent';
 
 const CalendarList = ({text, data, date}) => {
     const [opened, setOpened] = useState(false)
-    const test = (te) => {
-        console.log(te)
-    }
+
     return (
         <Space>
             <Button variant='solid' color='primary' onClick={()=> setOpened(true)} style={{width: 40, height: 32}}>
@@ -28,7 +26,6 @@ const CalendarList = ({text, data, date}) => {
                         data.map(subscription => {
                             return (
                                 <SubscriptionCard
-                                    onClick={test}
                                     title={getClearCost(subscription.cost)}
                                     description={parseSubPlan(subscription.period, subscription.periodType)}
                                     {...subscription}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Button, ColorPicker, Flex, Modal, Space, Avatar, Card } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import { Icons } from '../assets/IconsList';

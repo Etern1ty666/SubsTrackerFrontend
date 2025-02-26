@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Calendar, Avatar } from "antd";
 import PageHeader from "../components/PageHeader";
 import { subscriptionHavePayment } from "../utils/DateFunctions";
@@ -22,8 +22,8 @@ const renderDate = (date) => {
     if(dateSubscriptions.length > 3){
         dateSubscriptions.slice(0, 2).map(subscription => {
             icons.push(
-                <Avatar style={{left: leftOffset,  top: 30, alignContent: 'center', width: 20, height: 20, position: 'absolute', backgroundColor: subscription.color, borderRadius: 5}}>
-                    <div style={{top: 100, position: 'absolute'}}>{Icons[subscription.icon]}</div>
+                <Avatar style={{left: leftOffset,  top: 30, textAlign: 'center', width: 20, height: 20, position: 'absolute', backgroundColor: subscription.color, borderRadius: 5}}>
+                    {Icons[subscription.icon]}
                 </Avatar>
             )
             leftOffset -= 12

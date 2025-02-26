@@ -12,7 +12,6 @@ export function getPluralForm(number, one, few, many) {
 }
 
 export function getClearCost(cost) {
-    console.log(Number(cost))
     return (Number(cost).toFixed(2).endsWith(".00") ? Math.floor(Number(cost)) : Number(cost).toFixed(2)) + '₽'
 }
 
