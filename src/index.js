@@ -11,6 +11,17 @@ import localizedFormat from "dayjs/plugin/localizedFormat";
 dayjs.extend(localizedFormat);
 dayjs.locale("ru");
 document.body.style.background = '#0C0C0C'
+window.Telegram.WebApp.setBottomBarColor("#0C0C0C")
+
+const data = JSON.stringify({
+  eventType: 'web_app_setup_back_button',
+  eventData: {
+    is_visible: true,
+  },
+});
+
+window.parent.postMessage(data, 'https://web.telegram.org');
+
 const mainTheme = {
   "token": {
     "colorPrimary": "#13c2c2",
