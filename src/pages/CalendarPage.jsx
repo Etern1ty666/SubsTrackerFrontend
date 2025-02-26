@@ -22,8 +22,8 @@ const renderDate = (date) => {
     if(dateSubscriptions.length > 3){
         dateSubscriptions.slice(0, 2).map(subscription => {
             icons.push(
-                <Avatar style={{left: leftOffset,  top: 30, textAlign: 'center', width: 20, height: 20, position: 'absolute', backgroundColor: subscription.color, borderRadius: 5}}>
-                    {Icons[subscription.icon]}
+                <Avatar style={{left: leftOffset,  top: 30, alignContent: 'center', width: 20, height: 20, position: 'absolute', backgroundColor: subscription.color, borderRadius: 5}}>
+                    <div style={{top: 100, position: 'absolute'}}>{Icons[subscription.icon]}</div>
                 </Avatar>
             )
             leftOffset -= 12

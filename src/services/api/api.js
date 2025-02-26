@@ -24,7 +24,18 @@ export async function fetchSubscriptions (){
         return response.data;
     } catch (error) {
         console.error('Error getting subscriptions', error);
-        return [];
+        return [{
+            "id": 1,
+            "name": "Мобильный тариф",
+            "icon": "19",
+            "color": "#2690ce",
+            "cost": "399.99",
+            "period": "30",
+            "periodType": "day",
+            "paymentDate": "2025-02-25",
+            "notifications": "1",
+            "category": "internet"
+        }];
     }
 }
 
