@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Card, Divider, message, Modal, Space, Statistic } from 'antd';
+import { Avatar, Button, Card, Divider, Flex, message, Modal, Space, Statistic } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import Paragraph from 'antd/es/typography/Paragraph';
 import InsideContent from '../components/InsideContent';
@@ -39,13 +39,13 @@ const SubscriptionDetails = ({open, onClose, onEdit, ...props}) => {
         };
 
         return(
-            <Space align="center">
-                <Space  direction='vertical'>
+            <Flex justify="space-around" align='center'>
+                <Space direction='vertical'>
                     <Statistic title="Месяц" value={getClearCost(result.perMonth)} />
                     <Statistic title="День" value={getClearCost(result.perDay)} />
                 </Space>
-                <Statistic style={{marginLeft: 70}} title="Год" value={getClearCost(result.perYear)} />
-            </Space>            
+                <Statistic title="Год" value={getClearCost(result.perYear)} />
+            </Flex>            
         )
     }
     const renderAdditionalInfo = (category, notification) => {
@@ -78,8 +78,7 @@ const SubscriptionDetails = ({open, onClose, onEdit, ...props}) => {
             content: text,
         });
       };
-    const tg = window.Telegram.WebApp;
-    console.log(tg.initDataUnsafe)
+    
     async function delSubscription (subscription) {
         const result = await deleteSubscription(subscription.id)
         if (result != 'Delete error'){
