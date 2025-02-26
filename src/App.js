@@ -41,7 +41,7 @@ function App() {
         :
         <>
             {
-                isTelegramUser
+                !isTelegramUser
                 ?
                 <AppRouter/>
                 :

@@ -10,7 +10,7 @@ const AddSubscriptionButton = ({onChange}) => {
         style={{
             zIndex: 999,
             position: "fixed",
-            bottom: 98,
+            bottom: 70,
             right: 20,
             height: 60,
             width: 60,

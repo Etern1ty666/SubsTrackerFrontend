@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite';
 
 const tg = window.Telegram.WebApp;
 
-const iconStyle = { fontSize: '24px', marginTop: 10}
+const iconStyle = { fontSize: '26px', marginTop: 15}
 
 const NavigationPanel = () => {
   
@@ -31,6 +31,7 @@ const NavigationPanel = () => {
           bottom: 0,
           left: 0,
           width: "100%",
+          height: 60,
           backgroundColor:'#111111',
           borderRadius: 0
         }}
