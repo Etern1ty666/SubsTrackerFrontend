@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BarsOutlined, CalendarOutlined, PieChartOutlined, SettingOutlined } from '@ant-design/icons';
-import { Segmented } from 'antd';
+import { Segmented, Typography } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Paragraph from 'antd/es/typography/Paragraph';
 import { observer } from 'mobx-react-lite';
@@ -23,14 +23,17 @@ const NavigationPanel = () => {
     setSelectedPage(path);
     navigate(path);
   }
-  return <div style={{
-    zIndex: 999,
-    position: "fixed",
-    bottom: 0,
-    left: 0,
-    width: "100%",
-  }}>
+  return <>
     <Segmented
+        style={{
+          zIndex: 999,
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          width: "100%",
+          backgroundColor:'#111111',
+          borderRadius: 0
+        }}
         key={location.pathname}
         value={selectedPage}
         onChange={redirect}
@@ -40,25 +43,21 @@ const NavigationPanel = () => {
         {
           value: '/main',
           icon: <BarsOutlined style={iconStyle}/>,
-          label: <Paragraph>Подписки</Paragraph>
         },
         {
           value: '/calendar',
           icon: <CalendarOutlined style={iconStyle}/>,
-          label: <Paragraph>Календарь</Paragraph>
         },
         {
           value: '/statistics',
           icon: <PieChartOutlined style={iconStyle}/>,
-          label: <Paragraph>Статистика</Paragraph>
         },
         {
           value: '/settings',
           icon: <SettingOutlined style={iconStyle}/>,
-          label: <Paragraph>Настройки</Paragraph>
         },
       ]}
     />
-  </div>;
+  </>;
 };
 export default observer(NavigationPanel);
