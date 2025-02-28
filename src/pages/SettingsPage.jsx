@@ -35,7 +35,7 @@ function SettingsPage() {
         setDeleteLoading(true)
         const response = await deleteAllSubscriptions();
         if (response != 'Error'){
-            response.map(subscription => {subscriptionsStore.delete(subscription.id)})
+            response.map(subId => {subscriptionsStore.delete(subId)})
             alert('success', 'Подписки удалены')
         }else{
             alert('error', 'Не удалось удалить подписки, попробуйте еще раз')
