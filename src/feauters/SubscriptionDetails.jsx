@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Card, Divider, Flex, message, Modal, Space, Statistic } from 'antd';
+import { Avatar, Button, Card, Divider, Flex, message, Modal, Popconfirm, Space, Statistic } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import Paragraph from 'antd/es/typography/Paragraph';
 import InsideContent from '../components/InsideContent';
@@ -138,7 +138,16 @@ const SubscriptionDetails = ({open, onClose, onEdit, ...props}) => {
                         <Divider/>
                         <Space.Compact style={{width: '100%'}}>
                             <Button onClick={() => {setSettingsOpened(true)}} style={{width: '50%'}} icon={<EditOutlined />} />
-                            <Button onClick={() => {delSubscription(props); onClose(false)}} style={{width: '50%'}} variant="solid" color='danger' icon={<DeleteOutlined />} />
+                            <Popconfirm
+                                placement='bottom'
+                                title="Удалить подписку?"
+                                description="Это действие нельзя отменить."
+                                onConfirm={() => {delSubscription(props); onClose(false)}}
+                                okText="Продолжить"
+                                cancelText="Отменить"
+                            >
+                                <Button style={{width: '50%'}} variant="solid" color='danger' icon={<DeleteOutlined />} />
+                            </Popconfirm>
                         </Space.Compact>
                     </div>
                 </Card>
