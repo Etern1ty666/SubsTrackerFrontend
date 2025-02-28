@@ -6,7 +6,7 @@ import { observer } from 'mobx-react-lite';
 const SubscriptionDetails = () => {
 
         return(
-            <Space direction="vertical" align='center' style={{width: '100%'}}>
+            <Space direction="vertical" align='center' style={{width: '100%', marginTop: 40}}>
                 <LoadingOutlined style={{color: '#ffffff', fontSize: 64}}/>
             </Space>
     );
