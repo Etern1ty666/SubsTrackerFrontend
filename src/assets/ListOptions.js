@@ -54,49 +54,61 @@ export const categories = [
   {
       value: 'media',
       label: '📺 Развлечения и медиа',
+      color: '#8021ac'
   },
   {
       value: 'internet',
       label: '📡 Связь и интернет',
+      color: '#337ca7'
   },
   {
       value: 'soft',
       label: '💻 Софт и облачные сервисы',
+      color: '#21aca7'
   },
   {
       value: 'health',
       label: '💪 Здоровье и спорт',
+      color: '#3dd129'
   },
   {
       value: 'auto',
       label: '🚗 Авто и транспорт',
+      color: '#a70909'
   },
   {
       value: 'food',
       label: '🍔 Еда и доставка',
+      color: '#d2bc15'
   },
   {
       value: 'games',
       label: '🎮 Игры и развлечения',
+      color: '#bc681e'
   },
   {
       value: 'study',
       label: '📚 Образование и работа',
+      color: '#451ebc'
   },
   {
       value: 'house',
       label: '🏡 Дом и коммуналка',
+      color: '#1ebc4d'
   },
   {
       value: 'finances',
       label: '💰 Финансы и инвестиции',
+      color: '#0b5618'
   },
   {
       value: 'other',
       label: '🔹 Другое',
+      color: '#1717a6'
   },
   {
       value: 'nocategory',
       label: '➖ Без категории',
+      color: '#5e5e5e'
   },
 ]
