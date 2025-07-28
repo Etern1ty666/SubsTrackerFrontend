@@ -19,19 +19,26 @@ function App() {
 
         const tg = window.Telegram.WebApp;
         setLoading(true)
-        axios.get( process.env.REACT_APP_API_URL + 'api/checkTelegramData/', { params: { init_data: tg.initData, user_info: tg.initDataUnsafe.user}})
-            .then(response => {
-                console.log('Telegram data is valid:', response.data);
-                if(response.data === true){
-                    setIsTelgramUser(true);
-                    setLoading(false)
-                    getSubscriptions();
-                }else{
-                    setIsTelgramUser(false);
-                    setLoading(false)
-                }
+        axios.post(process.env.REACT_APP_API_URL + 'api/checkTelegramData/', {
+            initData: tg.initData,
+            userInfo: tg.initDataUnsafe.user
             })
-            .catch(error => {console.error('Error when checking telegram data', error); setErrorInfo(error.message+' ['+error.code+']'); setIsTelgramUser(false); setLoading(false)
+            .then(response => {
+            console.log('Telegram data is valid:', response.data);
+            if (response.data === true) {
+                setIsTelgramUser(true);
+                setLoading(false);
+                getSubscriptions();
+            } else {
+                setIsTelgramUser(false);
+                setLoading(false);
+            }
+            })
+            .catch(error => {
+            console.error('Error when checking telegram data', error);
+            setErrorInfo(error.message + ' [' + error.code + ']');
+            setIsTelgramUser(false);
+            setLoading(false);
             });
 
     }, []);
